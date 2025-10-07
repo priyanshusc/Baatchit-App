@@ -1,0 +1,363 @@
+@import "tailwindcss";
+
+
+
+@theme {
+
+  /* ... your other custom tokens ... */
+
+  /* Neumorphic Shadows */
+  /* --shadow-neumorphic: 9px 9px 16px #a3b1c6, -9px -9px 16px #ffffff; */
+  /* --shadow-neumorphic-inset: inset 9px 9px 16px #a3b1c6, inset -9px -9px 16px #ffffff; */
+  --breakpoint-xsm: 430px;
+  /* --color-avocado-100: oklch(0.99 0 0); */
+}
+
+/* @layer base {
+  body {
+    background-color: #e0e5ec;
+  }
+} */
+
+/* .slide-in {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #000;
+  transform-origin: bottom;
+}
+
+.slide-out {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #000;
+  transform-origin: top;
+} */
+
+.dark {  
+  /* Background Gradient */
+  --background-from: 0 0 0;
+  /* black */
+  --background-via: 17 24 39;
+  /* gray-900 */
+  --background-to: 0 0 0;
+  /* black */
+
+  /* Card (Glassmorphism) */
+
+  --card-bg: 255 255 255 / 0.1;
+  /* white/10 */
+
+  --card-border: 255 255 255 / 0.2;
+
+  
+  
+  /* Text */
+  
+  --text-primary: 255 255 255;
+  /* white */
+  
+  --text-muted: 209 213 219;
+  /* gray-300 */
+  
+  --text-subtle: 156 163 175;
+  /* gray-400 */
+  
+  
+  
+  /* Input */
+  
+  --input-bg: 17 24 39 / 0.7;
+  /* gray-900/70 */
+
+  --input-border: 55 65 81;
+  /* gray-700 */
+
+
+
+  /* Accent */
+
+  --primary-from: 59 130 246;
+  /* blue-500 */
+  
+  --primary-to: 79 70 229;
+  /* indigo-600 */
+
+  --primary-text: 255 255 255;
+  /* white */
+
+
+
+  --send-btn-from: 59 130 246;
+  /* yellow-400 */
+
+  --send-btn-to: 79 70 229;
+  /* pink-500 */
+  
+  --send-btn-text: 255 255 255;
+  /* white */
+
+}
+
+
+
+.light {
+
+  /* Background Gradient */
+
+  --background-from: 255 255 255;
+  /* white */
+
+  --background-via: 643 224 246;
+  /* gray-100 */
+ 
+  --background-to: 329 431 165;
+  /* gray-200 */
+
+
+
+  /* Card (Glassmorphism) */
+
+  --card-bg: 255 255 255 / 0.6;
+  /* white/60 for frosted look */
+
+  --card-border: 0 0 0 / 0.1;
+  /* subtle dark border */
+
+
+
+  /* Text */
+
+  --text-primary: 17 24 39;
+  /* gray-900 */
+
+  --text-muted: 75 85 99;
+  /* gray-700 */
+
+  --text-subtle: 107 114 128;
+  /* gray-600 */
+
+
+
+  /* Input */
+
+  --input-bg: 200 200 200 / 0.7;
+  /* white/70 */
+
+  --setting-bg: 255 255 255 / 0.7;
+
+  --input-border: 209 213 219;
+  /* gray-300 */
+
+
+
+  /* Accent */
+
+  --primary-from: 229 231 235;
+  /* gray-200 */
+
+  --primary-to: 209 213 219;
+  /* gray-300 */
+
+  --primary-text: 255 255 255;
+  /* white */
+
+
+
+  /* Send button */
+
+  --send-btn-from: 234 179 8;
+  /* yellow-400 */
+
+  --send-btn-to: 236 72 153;
+  /* pink-500 */
+
+  --send-btn-text: 255 255 255;
+  /* white */
+
+}
+
+
+
+/* Modern thin scrollbar for Chrome/Edge/Safari */
+
+::-webkit-scrollbar {
+
+  width: 6px;
+
+}
+
+
+
+::-webkit-scrollbar-track {
+
+  background: transparent;
+
+}
+
+
+
+::-webkit-scrollbar-thumb {
+
+  background: rgba(255, 255, 255, 0.2);
+
+  border-radius: 10px;
+
+}
+
+
+
+::-webkit-scrollbar-thumb:hover {
+
+  background: rgba(255, 255, 255, 0.4);
+
+}
+
+
+
+/* Firefox */
+
+* {
+
+  scrollbar-width: thin;
+
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+
+}
+
+
+
+.light {
+
+  /* Sent messages (light theme) */
+
+  --msg-sent-from: 234 179 8;
+  /* yellow-500 */
+
+  --msg-sent-to: 236 72 153;
+  /* pink-500 */
+
+  --msg-sent-text: 255 255 255;
+  /* white */
+
+  --back-btn: 202 138 4;
+
+
+
+  /* Received messages (light theme) */
+
+  --msg-received-bg: 255 255 255 / 0.7;
+  /* same as current --setting-bg */
+
+  --msg-received-text: 17 24 39;
+  /* gray-900 */
+
+  --edit-profile: 107 114 128;
+  /* gray-500 */
+
+
+
+}
+
+.light {
+  --list-text: 17 24 39; /* gray-900 */
+  --list-hover: 209 213 219; /* gray-300 */
+}
+
+.dark {
+  --list-text: 255 255 255; /* white */
+  --list-hover: 55 65 81; /* gray-700 */
+}
+
+
+.dark {
+
+  /* Sent messages (dark theme) */
+
+  --msg-sent-from: 59 130 246;
+  /* indigo-600 */
+
+  --msg-sent-to: 79 70 229;
+  /* pink-500 */
+
+  --msg-sent-text: 255 255 255;
+  /* white */
+
+  --back-btn: 59 130 246;
+
+  /* --profile-input: ; */
+
+
+
+  /* Received messages (dark theme, lighter than setting-bg) */
+
+  --msg-received-bg: 255 255 255 / 0.1;
+  /* lighter glass */
+
+  --msg-received-text: 229 231 235;
+  /* gray-200 */
+
+}
+
+
+/* Landing Page */
+
+.dark .logo-text {
+  background: linear-gradient(to right, #4c68ee, #10e0c0); /* A vibrant blue to a bright cyan */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.light .logo-text {
+  background: linear-gradient(to right, #eab308, #ec4899); /* yellow-400 to pink-500 */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.start-heading {
+  color: rgb(var(--text-primary)); /* This will be white in dark theme */
+}
+
+.light .start-heading {
+  color: rgb(249, 115, 22);
+}
+
+.join-text {
+  color: rgb(var(--text-primary)); /* This will be white by default in the dark theme */
+}
+
+.light .join-text {
+  color: rgb(107, 114, 128); /* This will be the new color only in the light theme */
+}
+
+
+.sign-in-btn {
+  /* Default styles for the dark theme */
+  border: 1px solid rgb(var(--input-border));
+  color: rgb(var(--text-primary));
+  background-color: transparent;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.sign-in-btn:hover {
+  /* Hover style for the dark theme */
+  background-color: rgb(17, 24, 39);
+}
+
+.light .sign-in-btn {
+  /* Styles for the light theme */
+  border-color: rgb(107, 114, 128);
+  color: rgb(17, 24, 39);
+}
+
+.light .sign-in-btn:hover {
+  /* Hover style for the light theme */
+  border-color: rgb(249, 115, 22); /* This will be the bright pink on hover */
+  background-color: transparent;
+  /* color: #ec4899; */
+}

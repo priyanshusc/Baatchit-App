@@ -49,17 +49,17 @@ It goes beyond basic messaging by implementing **end-to-end security** practices
 
 Follow these steps to run the project locally.
 
-### 1. Clone the Repository
+## 1. Clone the Repository
 ```bash
 git clone [https://github.com/your-username/baatchit-app.git](https://github.com/your-username/baatchit-app.git)
 cd baatchit-app
 ```
-### 2. Backend Setup
+## 2. Backend Setup
 ```bash
 cd Backend
 npm install
 ```
-## Create a .env file in the Backend directory and add the following:
+### Create a .env file in the Backend directory and add the following:
 ```bash
 PORT=5000
 MONGO_DB_URI=your_mongodb_connection_string
@@ -79,16 +79,16 @@ ENCRYPTION_IV=1234567890abcdef
 ```bash
 npm start
 ```
-### 3. Frontend Setup
+## 3. Frontend Setup
 ```bash
 cd Frontend
 npm install
 ```
-## Create a .env file in the Frontend directory:
+### Create a .env file in the Frontend directory:
 ```bash
 VITE_API_URL=http://localhost:5000
 ```
-## Run the React App:
+### Run the React App:
 ```bash
 npm run dev
 ```

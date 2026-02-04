@@ -1,62 +1,36 @@
 import express from 'express';
-
 import protectRoute from '../middleware/protectRoute.js';
-
 import Message from '../models/message.model.js';
 import { decrypt } from '../utils/crypto.js';
 
-
-
 const router = express.Router();
 
-
-
-// Route to get messages between two users
-
 router.get('/:id', protectRoute, async (req, res) => {
-
   try {
-
     const { id: userToChatId } = req.params;
-
     const senderId = req.user._id;
 
-
-
-    // Find the conversation
-
     const conversation = await Message.find({
-
       $or: [
-
         { senderId: senderId, recipientId: userToChatId },
-
         { senderId: userToChatId, recipientId: senderId },
-
       ],
       deletedBy: { $ne: senderId },
-
-    }).sort({ createdAt: 1 }); // Sort by creation time
+    }).sort({ createdAt: 1 });
 
     const decryptedConversation = conversation.map((msg) => {
       return {
-        ...msg.toObject(), // Convert Mongoose doc to a plain object
-        message: decrypt(msg.message), // Decrypt the message content
+        ...msg.toObject(),
+        message: decrypt(msg.message),
       };
     });
 
-    res.status(200).json(decryptedConversation); // 3. SEND THE DECRYPTED DATA
-
-
+    res.status(200).json(decryptedConversation);
 
   } catch (error) {
-
     console.error("Error in getMessages route", error);
-
     res.status(500).json({ message: "Internal Server Error" });
-
   }
-
 });
 
 router.post('/read/:id', protectRoute, async (req, res) => {
@@ -64,7 +38,6 @@ router.post('/read/:id', protectRoute, async (req, res) => {
         const { id: partnerId } = req.params;
         const userId = req.user._id;
 
-        // Update all messages from the partner to the current user to be 'isRead: true'
         await Message.updateMany(
             { senderId: partnerId, recipientId: userId, isRead: false },
             { $set: { isRead: true } }

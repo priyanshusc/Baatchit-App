@@ -1,38 +1,21 @@
 import mongoose from 'mongoose';
 
-
-
 const messageSchema = new mongoose.Schema({
-
   senderId: {
-
     type: mongoose.Schema.Types.ObjectId,
-
-    ref: "User", // This creates a relationship to the User model
-
-    required: true,
-
-  },
-
-  recipientId: {
-
-    type: mongoose.Schema.Types.ObjectId,
-
     ref: "User",
-
     required: true,
-
   },
-
+  recipientId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   message: {
-
     type: String,
-
     required: true,
-
   },
-
-  isRead: { // 👈 ADD THIS FIELD
+  isRead: {
     type: Boolean,
     default: false,
   },
@@ -42,16 +25,9 @@ const messageSchema = new mongoose.Schema({
   }],
 
 }, {
-
-  timestamps: true // Adds createdAt and updatedAt timestamps
-
+  timestamps: true
 });
-
-
 
 const Message = mongoose.model('Message', messageSchema);
 
-
-
 export default Message;
-

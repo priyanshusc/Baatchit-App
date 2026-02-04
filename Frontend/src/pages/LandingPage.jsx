@@ -20,12 +20,11 @@ const LandingPage = () => {
             transition={{ duration: 0.5 }}
         >
             <div className="bg-gradient-to-br from-[rgb(var(--background-from))] via-[rgb(var(--background-via))] to-[rgb(var(--background-to))] text-white min-h-screen flex flex-col md:flex-row py-52 md:py-0">
-                {/* Left Side: Logo */}
+
                 <div className="flex flex-1 items-center justify-center p-6 md:p-8">
-                    {/* You can replace this with your <img> tag later */}
                     <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold logo-text">Baatchit</h1>
                 </div>
-                {/* Right Side: Actions */}
+
                 <div className="flex flex-1 items-center justify-center p-6 md:p-8">
                     <div className="max-w-md w-full space-y-6 md:space-y-8">
                         <div className='text-center md:text-left'>

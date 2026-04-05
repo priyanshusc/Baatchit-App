@@ -30,7 +30,7 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [deleteAction, setDeleteAction] = useState({ messageId: null, type: null });
   const [isForwardModalOpen, setIsForwardModalOpen] = useState(false);
-const [messageToForward, setMessageToForward] = useState(null);
+  const [messageToForward, setMessageToForward] = useState(null);
   const menuRef = useRef(null);
 
 
@@ -292,41 +292,41 @@ const [messageToForward, setMessageToForward] = useState(null);
 
   const handleCopyMessage = async (messageText) => {
     try {
-        await navigator.clipboard.writeText(messageText);
-        toast.success('Copied to clipboard!');
+      await navigator.clipboard.writeText(messageText);
+      toast.success('Copied to clipboard!');
     } catch (err) {
-        toast.error('Failed to copy message.');
-        console.error('Failed to copy message: ', err);
+      toast.error('Failed to copy message.');
+      console.error('Failed to copy message: ', err);
     }
     setOpenMenuMessageId(null); // Close the menu after copying
-};
+  };
 
-const handleOpenForwardModal = (message) => {
+  const handleOpenForwardModal = (message) => {
     setMessageToForward(message);
     setIsForwardModalOpen(true);
     setOpenMenuMessageId(null); // Close the ellipsis menu
-};
+  };
 
-const handleCloseForwardModal = () => {
+  const handleCloseForwardModal = () => {
     setIsForwardModalOpen(false);
     setMessageToForward(null);
-};
+  };
 
-const handleConfirmForward = (selectedUserIds) => {
+  const handleConfirmForward = (selectedUserIds) => {
     if (!messageToForward || selectedUserIds.length === 0) return;
 
     // Loop through the selected user IDs and send the message to each one
     selectedUserIds.forEach(userId => {
-        socket.emit('privateMessage', {
-            recipientId: userId,
-            message: messageToForward.message,
-        });
-        // We can also add an optimistic update for forwarded messages if needed
+      socket.emit('privateMessage', {
+        recipientId: userId,
+        message: messageToForward.message,
+      });
+      // We can also add an optimistic update for forwarded messages if needed
     });
 
     toast.success(`Forwarded message to ${selectedUserIds.length} user(s)!`);
     handleCloseForwardModal();
-};
+  };
 
 
   const currentMessages = selectedUser ? (conversations[selectedUser._id] || []) : [];
@@ -347,11 +347,11 @@ const handleConfirmForward = (selectedUserIds) => {
       </ConfirmationModal>
 
       <ForwardModal
-            isOpen={isForwardModalOpen}
-            onClose={handleCloseForwardModal}
-            users={users} // Pass the list of all users
-            onForward={handleConfirmForward}
-        />
+        isOpen={isForwardModalOpen}
+        onClose={handleCloseForwardModal}
+        users={users} // Pass the list of all users
+        onForward={handleConfirmForward}
+      />
       <div className="max-h-[100dvh] bg-gradient-to-br from-[rgb(var(--background-from))] via-[rgb(var(--background-via))] to-[rgb(var(--background-to))] text-[rgb(var(--text-primary))] h-screen flex flex-col p-6">
         <div className="max-w-6xl w-full mx-auto flex-1 flex flex-col min-h-0">
           {/* Header */}
@@ -456,30 +456,30 @@ const handleConfirmForward = (selectedUserIds) => {
                               </button>
 
                               {openMenuMessageId === msg._id && (
-    <div className={`absolute top-full mt-1 w-48 bg-[rgb(var(--card-bg))] backdrop-blur-md border border-[rgb(var(--card-border))] rounded-lg shadow-xl py-1 z-20 ${msg.senderId === user._id ? 'right-0' : 'left-0'}`}>
-        {/* --- NEW "Copy" Button --- */}
-        <button onClick={() => handleCopyMessage(msg.message)} className="w-full text-left px-3 py-2 text-sm text-[rgb(var(--text-muted))] hover:bg-[rgb(var(--input-bg))]">
-            Copy Message
-        </button>
+                                <div className={`absolute top-full mt-1 w-48 bg-[rgb(var(--card-bg))] backdrop-blur-md border border-[rgb(var(--card-border))] rounded-lg shadow-xl py-1 z-20 ${msg.senderId === user._id ? 'right-0' : 'left-0'}`}>
+                                  {/* --- NEW "Copy" Button --- */}
+                                  <button onClick={() => handleCopyMessage(msg.message)} className="w-full text-left px-3 py-2 text-sm text-[rgb(var(--text-muted))] hover:bg-[rgb(var(--input-bg))]">
+                                    Copy Message
+                                  </button>
 
-        {/* --- NEW "Forward" Button --- */}
-        <button onClick={() => handleOpenForwardModal(msg)} className="w-full text-left px-3 py-2 text-sm text-[rgb(var(--text-muted))] hover:bg-[rgb(var(--input-bg))]">
-            Forward Message
-        </button>
-        
-        <div className="border-t border-[rgb(var(--input-border))] my-1"></div>
+                                  {/* --- NEW "Forward" Button --- */}
+                                  <button onClick={() => handleOpenForwardModal(msg)} className="w-full text-left px-3 py-2 text-sm text-[rgb(var(--text-muted))] hover:bg-[rgb(var(--input-bg))]">
+                                    Forward Message
+                                  </button>
 
-        {/* --- Existing Delete Buttons --- */}
-        <button onClick={() => handleOpenModal(msg._id, 'me')} className="w-full text-left px-3 py-2 text-sm text-[rgb(var(--text-muted))] hover:bg-[rgb(var(--input-bg))]">
-            Delete for Me
-        </button>
-        {msg.senderId === user._id && (
-            <button onClick={() => handleOpenModal(msg._id, 'everyone')} className="w-full text-left px-3 py-2 text-sm text-[rgb(var(--text-muted))] hover:bg-[rgb(var(--input-bg))]">
-                Delete for Everyone
-            </button>
-        )}
-    </div>
-)}
+                                  <div className="border-t border-[rgb(var(--input-border))] my-1"></div>
+
+                                  {/* --- Existing Delete Buttons --- */}
+                                  <button onClick={() => handleOpenModal(msg._id, 'me')} className="w-full text-left px-3 py-2 text-sm text-[rgb(var(--text-muted))] hover:bg-[rgb(var(--input-bg))]">
+                                    Delete for Me
+                                  </button>
+                                  {msg.senderId === user._id && (
+                                    <button onClick={() => handleOpenModal(msg._id, 'everyone')} className="w-full text-left px-3 py-2 text-sm text-[rgb(var(--text-muted))] hover:bg-[rgb(var(--input-bg))]">
+                                      Delete for Everyone
+                                    </button>
+                                  )}
+                                </div>
+                              )}
                             </div>
                           </div>
                         </li>

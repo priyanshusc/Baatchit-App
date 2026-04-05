@@ -31,7 +31,7 @@ router.post('/signup', async (req, res) => {
 
     await newUser.save();
 
-    const verificationUrl = `${process.env.FRONTEND_URL}/verify/${verificationToken}`;
+    const verificationUrl = `${process.env.FRONTEND_URL}verify/${verificationToken}`;
     const message = `
       <h1>Welcome to Baatchit!</h1>
       <p>Please click the link below to verify your email address:</p>

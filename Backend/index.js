@@ -1,8 +1,8 @@
+import 'dotenv/config';
 import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import authRoutes from './routes/auth.routes.js';
 import userRoutes from './routes/user.routes.js';
@@ -10,8 +10,6 @@ import connectToMongoDB from './db/connectToMongoDB.js';
 import Message from './models/message.model.js';
 import messageRoutes from './routes/message.routes.js';
 import { encrypt } from './utils/crypto.js';
-
-dotenv.config();
 
 const app = express();
 const server = http.createServer(app);

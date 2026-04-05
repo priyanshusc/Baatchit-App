@@ -54,7 +54,7 @@ router.post('/signup', async (req, res) => {
       console.log("Rolled back: User deleted because email failed.");
     }
 
-    res.status(500).json({ message: "Failed to send verification email. Please try again." });
+    res.status(500).json({ message: "The email service is currently unavailable. Please check your internet or try again later." });
   }
 });
 

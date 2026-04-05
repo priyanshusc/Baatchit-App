@@ -50,8 +50,8 @@ router.post('/signup', async (req, res) => {
     console.error("Error in signup route:", error);
 
     if (newUser && newUser._id) {
-        await User.findByIdAndDelete(newUser._id);
-        console.log("Rolled back: User deleted because email failed.");
+      await User.findByIdAndDelete(newUser._id);
+      console.log("Rolled back: User deleted because email failed.");
     }
 
     res.status(500).json({ message: "Failed to send verification email. Please try again." });
@@ -71,6 +71,10 @@ router.post('/login', async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid username or password." });
+    }
+
+    if (!user.isVerified) {
+      return res.status(401).json({ message: "Please verify your email before logging in." });
     }
 
     const payload = {

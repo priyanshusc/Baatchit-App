@@ -30,8 +30,8 @@ app.use(express.json());
 
 app.use((req, res, next) => {
   if (process.env.MAINTENANCE_MODE === 'true') {
-    return res.status(503).json({ 
-      message: "This application is under maintenance. Please check back later." 
+    return res.status(503).json({
+      message: "This application is under maintenance. Please check back later."
     });
   }
   next();
@@ -59,12 +59,12 @@ io.on('connection', (socket) => {
 
     socket.on('privateMessage', async ({ recipientId, message }) => {
       try {
-         const newMessage = new Message({
-      senderId: userId,
-      recipientId: recipientId,
-      message: encrypt(message), // 2. MODIFY THIS LINE
-    });
-    await newMessage.save();
+        const newMessage = new Message({
+          senderId: userId,
+          recipientId: recipientId,
+          message: encrypt(message), // 2. MODIFY THIS LINE
+        });
+        await newMessage.save();
 
         const recipientSocketId = userSocketMap[recipientId];
         if (recipientSocketId) {
